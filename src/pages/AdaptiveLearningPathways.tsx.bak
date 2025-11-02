@@ -1,0 +1,593 @@
+import React, { useState } from 'react';
+import { Card } from '../components';
+import SkillProgressBar from '../components/SkillProgressBar';
+
+const AdaptiveLearningPathways: React.FC = () => {
+  const [activeTab, setActiveTab] = useState('discover');
+
+  const tabs = [
+    { id: 'discover', label: 'Discover Paths' },
+    { id: 'progress', label: 'My Progress' },
+    { id: 'assessment', label: 'Skill Assessment' },
+    { id: 'analytics', label: 'Learning Analytics' }
+  ];
+
+  const skillAssessmentData = {
+    assessedSkills: 8,
+    totalSkills: 12,
+    avgScore: 78,
+    monthlyIncrease: 12
+  };
+
+  const techSkills = [
+    { name: 'JavaScript', level: 'Intermediate', progress: 75 },
+    { name: 'Python', level: 'Beginner', progress: 45 },
+    { name: 'React', level: 'Advanced', progress: 90 },
+    { name: 'Node.js', level: 'Not Assessed', progress: 0 }
+  ];
+
+  const businessSkills = [
+    { name: 'Project Management', level: 'Intermediate', progress: 65 },
+    { name: 'Data Analysis', level: 'Beginner', progress: 30 }
+  ];
+
+  const designSkills = [
+    { name: 'UI/UX Design', level: 'Intermediate', progress: 70 },
+    { name: 'Graphic Design', level: 'Beginner', progress: 40 },
+    { name: 'Prototyping', level: 'Advanced', progress: 85 },
+    { name: 'User Research', level: 'Not Assessed', progress: 0 }
+  ];
+
+  const learningProgress = {
+    activePaths: 3,
+    completed: 5,
+    hoursLearned: 127,
+    certificates: 3
+  };
+
+  const currentPaths = [
+    {
+      title: 'Data Science Fundamentals',
+      category: 'Data Science',
+      progress: 65,
+      modules: { completed: 10, total: 16 },
+      timeLeft: '3 weeks',
+      lastActivity: '2 hours ago',
+      nextMilestone: 'Module 11: ML Basics'
+    },
+    {
+      title: 'UI/UX Design Principles',
+      category: 'Design',
+      progress: 30,
+      modules: { completed: 6, total: 20 },
+      timeLeft: '7 weeks',
+      lastActivity: '1 day ago',
+      nextMilestone: 'Module 7: Prototyping'
+    }
+  ];
+
+  const recommendations = [
+    {
+      title: 'Full-Stack Web Development',
+      subtitle: 'Fills your JavaScript skill gap',
+      description: 'Master modern web development with React, Node.js, and cloud deployment. Build real-world applications from scratch.',
+      matchScore: 92,
+      reasons: [
+        'Aligns with your career goal in tech',
+        'High market demand for these skills',
+        'Builds on your existing knowledge'
+      ]
+    },
+    {
+      title: 'Data Science Fundamentals',
+      subtitle: 'High demand in current market',
+      description: 'Learn Python, statistics, and machine learning to extract insights from data and make data-driven decisions.',
+      matchScore: 85,
+      reasons: [
+        'Growing field with 25% job growth',
+        'Average salary increase of $15k',
+        'Complements your analytical skills'
+      ]
+    }
+  ];
+    {
+      id: '2',
+      title: 'Data Analysis Fundamentals',
+      description: 'Learn data analysis techniques, statistical methods, and visualization tools.',
+      category: 'Data Science',
+      difficulty: 'Beginner',
+      totalModules: 10,
+      completedModules: 3,
+      progress: 30,
+      estimatedTime: '10 weeks',
+      timeRemaining: '6 weeks',
+      color: 'green',
+      skills: ['Excel', 'Statistics', 'Data Visualization', 'SQL'],
+      certificateIncluded: true,
+      weeklyHours: 3,
+      isActive: true,
+      startDate: new Date('2024-02-01')
+    },
+    {
+      id: '3',
+      title: 'Leadership & Communication',
+      description: 'Develop leadership skills and effective communication strategies for professional growth.',
+      category: 'Leadership',
+      difficulty: 'Advanced',
+      totalModules: 8,
+      completedModules: 7,
+      progress: 85,
+      estimatedTime: '6 weeks',
+      timeRemaining: '1 week',
+      color: 'purple',
+      skills: ['Leadership', 'Communication', 'Team Management', 'Conflict Resolution'],
+      certificateIncluded: true,
+      weeklyHours: 2,
+      isActive: true,
+      startDate: new Date('2024-01-01')
+    }
+  ];
+
+  // Mock data for recommended courses
+  const recommendedCourses: Course[] = [
+    {
+      id: '1',
+      title: 'Advanced Excel & Analytics',
+      description: 'Master advanced Excel functions, pivot tables, and data analysis techniques.',
+      instructor: 'Sarah Johnson',
+      duration: '4 weeks',
+      level: 'Intermediate',
+      rating: 4.8,
+      studentsEnrolled: 1250,
+      price: 89,
+      category: 'Data Analysis',
+      skills: ['Excel', 'Data Analysis', 'Pivot Tables', 'Formulas'],
+      modules: [],
+      isRecommended: true,
+      matchScore: 92
+    },
+    {
+      id: '2',
+      title: 'Project Management Essentials',
+      description: 'Learn project management fundamentals, methodologies, and best practices.',
+      instructor: 'Michael Chen',
+      duration: '6 weeks',
+      level: 'Beginner',
+      rating: 4.9,
+      studentsEnrolled: 2100,
+      price: 0,
+      category: 'Management',
+      skills: ['Project Management', 'Agile', 'Scrum', 'Planning'],
+      modules: [],
+      isRecommended: true,
+      matchScore: 88
+    },
+    {
+      id: '3',
+      title: 'Creative Problem Solving',
+      description: 'Develop creative thinking skills and problem-solving methodologies.',
+      instructor: 'Emma Davis',
+      duration: '3 weeks',
+      level: 'All Levels',
+      rating: 4.7,
+      studentsEnrolled: 890,
+      price: 49,
+      category: 'Soft Skills',
+      skills: ['Creative Thinking', 'Problem Solving', 'Innovation', 'Design Thinking'],
+      modules: [],
+      isRecommended: false,
+      matchScore: 75
+    },
+    {
+      id: '4',
+      title: 'Financial Planning Basics',
+      description: 'Learn personal and business financial planning fundamentals.',
+      instructor: 'Robert Wilson',
+      duration: '5 weeks',
+      level: 'Beginner',
+      rating: 4.6,
+      studentsEnrolled: 1560,
+      price: 79,
+      category: 'Finance',
+      skills: ['Financial Planning', 'Budgeting', 'Investment', 'Risk Management'],
+      modules: [],
+      isRecommended: true,
+      matchScore: 82
+    }
+  ];
+
+  // Mock data for skill assessments
+  const skillAssessments: SkillAssessment[] = [
+    {
+      id: '1',
+      skillName: 'Digital Marketing',
+      currentLevel: 'Advanced',
+      progress: 85,
+      lastAssessed: new Date('2024-01-15'),
+      recommendedCourses: ['1', '3'],
+      strengths: ['SEO Optimization', 'Content Strategy', 'Social Media Marketing'],
+      improvementAreas: ['PPC Campaigns', 'Email Marketing', 'Marketing Automation']
+    },
+    {
+      id: '2',
+      skillName: 'Data Analysis',
+      currentLevel: 'Intermediate',
+      progress: 60,
+      lastAssessed: new Date('2024-02-01'),
+      recommendedCourses: ['1', '2'],
+      strengths: ['Excel Functions', 'Data Visualization', 'Statistical Analysis'],
+      improvementAreas: ['Advanced Analytics', 'Machine Learning', 'Database Management']
+    },
+    {
+      id: '3',
+      skillName: 'Leadership',
+      currentLevel: 'Advanced',
+      progress: 90,
+      lastAssessed: new Date('2024-01-20'),
+      recommendedCourses: ['2', '3'],
+      strengths: ['Team Management', 'Strategic Thinking', 'Communication'],
+      improvementAreas: ['Change Management', 'Conflict Resolution', 'Performance Management']
+    }
+  ];
+
+  // Mock data for learning analytics
+  const learningAnalytics: LearningAnalytics = {
+    weeklyGoal: {
+      target: 10,
+      completed: 8,
+      unit: 'hours'
+    },
+    totalStats: {
+      coursesCompleted: 24,
+      hoursLearned: 156,
+      certificatesEarned: 18,
+      completionRate: 92
+    },
+    streakDays: 12,
+    weeklyActivity: [3, 5, 2, 8, 6, 4, 7],
+    skillProgress: [
+      { skill: 'Marketing', level: 'Advanced', progress: 85, color: '#10B981' },
+      { skill: 'Analytics', level: 'Intermediate', progress: 60, color: '#F59E0B' },
+      { skill: 'Leadership', level: 'Advanced', progress: 90, color: '#8B5CF6' }
+    ],
+    learningVelocity: {
+      thisWeek: 8,
+      lastWeek: 6,
+      trend: 'up'
+    }
+  };
+
+  const handleContinuePath = (pathId: string) => {
+    console.log('Continue learning path:', pathId);
+  };
+
+  const handleViewPathDetails = (pathId: string) => {
+    console.log('View path details:', pathId);
+  };
+
+  const handleEnrollCourse = (courseId: string) => {
+    console.log('Enroll in course:', courseId);
+  };
+
+  const handleViewCourseDetails = (courseId: string) => {
+    console.log('View course details:', courseId);
+  };
+
+  const handleTakeAssessment = (skillId: string) => {
+    console.log('Take assessment for skill:', skillId);
+  };
+
+  const handleViewRecommendations = (skillId: string) => {
+    console.log('View recommendations for skill:', skillId);
+  };
+
+  return (
+    <div className="p-6">
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-2xl font-semibold mb-2">Adaptive Learning Pathways</h1>
+        <p className="text-gray-600">Personalized skill development powered by AI intelligence</p>
+
+        <div className="flex space-x-6 mt-6 border-b">
+          {tabs.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`pb-4 px-2 text-sm ${
+                activeTab === tab.id
+                  ? 'border-b-2 border-blue-600 text-blue-600 font-medium'
+                  : 'text-gray-600'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+        <div className="flex space-x-4 mt-4">
+          <Button
+            variant={activeTab === 'paths' ? 'primary' : 'ghost'}
+            size="sm"
+            onClick={() => setActiveTab('paths')}
+          >
+            Learning Paths
+          </Button>
+          <Button
+            variant={activeTab === 'courses' ? 'primary' : 'ghost'}
+            size="sm"
+            onClick={() => setActiveTab('courses')}
+          >
+            Recommended Courses
+          </Button>
+          <Button
+            variant={activeTab === 'assessments' ? 'primary' : 'ghost'}
+            size="sm"
+            onClick={() => setActiveTab('assessments')}
+          >
+            Skill Assessments
+          </Button>
+        </div>
+      </Card>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main Content */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Learning Paths Tab */}
+          {activeTab === 'paths' && (
+            <Card title="Your Learning Paths" variant="default" size="md">
+              <div className="space-y-4">
+                {learningPaths.map((path) => (
+                  <LearningPathCard
+                    key={path.id}
+                    path={path}
+                    onContinue={handleContinuePath}
+                    onViewDetails={handleViewPathDetails}
+                  />
+                ))}
+              </div>
+              
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Explore New Paths</h3>
+                  <Button variant="outline" size="sm">
+                    Browse All
+                  </Button>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { title: 'Web Development Bootcamp', category: 'Technology', difficulty: 'Intermediate' },
+                    { title: 'UX/UI Design Fundamentals', category: 'Design', difficulty: 'Beginner' }
+                  ].map((path, index) => (
+                    <div key={index} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <h4 className="font-semibold text-gray-900 mb-2">{path.title}</h4>
+                      <div className="flex items-center justify-between text-sm text-gray-600">
+                        <span>{path.category}</span>
+                        <span className="px-2 py-1 rounded-full bg-gray-100 text-xs font-medium">
+                          {path.difficulty}
+                        </span>
+                      </div>
+                      <Button variant="secondary" size="sm" fullWidth className="mt-3">
+                        Start Path
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Card>
+          )}
+
+          {/* Recommended Courses Tab */}
+          {activeTab === 'courses' && (
+            <Card title="Recommended for You" variant="default" size="md">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {recommendedCourses.map((course) => (
+                  <CourseCard
+                    key={course.id}
+                    course={course}
+                    onEnroll={handleEnrollCourse}
+                    onViewDetails={handleViewCourseDetails}
+                    compact={true}
+                  />
+                ))}
+              </div>
+              
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900">Browse by Category</h3>
+                  <Button variant="outline" size="sm">
+                    View All Categories
+                  </Button>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+                  {['Technology', 'Business', 'Design', 'Marketing', 'Data Science', 'Leadership', 'Finance', 'Health'].map((category) => (
+                    <Button key={category} variant="ghost" size="sm" className="justify-start">
+                      {category}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </Card>
+          )}
+
+          {/* Skill Assessments Tab */}
+          {activeTab === 'assessments' && (
+            <Card title="Skill Assessments" variant="default" size="md">
+              <p className="text-gray-600 text-sm mb-6">
+                Take assessments to identify your strengths and areas for improvement. Get personalized course recommendations based on your results.
+              </p>
+              
+              <div className="space-y-4">
+                {skillAssessments.map((assessment) => (
+                  <SkillAssessmentCard
+                    key={assessment.id}
+                    assessment={assessment}
+                    onTakeAssessment={handleTakeAssessment}
+                    onViewRecommendations={handleViewRecommendations}
+                  />
+                ))}
+              </div>
+              
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Available Assessments</h3>
+                  <Button variant="outline" size="sm">
+                    View All
+                  </Button>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { skill: 'Project Management', duration: '15 min', questions: 25 },
+                    { skill: 'Creative Thinking', duration: '10 min', questions: 20 }
+                  ].map((assessment, index) => (
+                    <div key={index} className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">{assessment.skill}</h4>
+                      <div className="text-sm text-gray-600 mb-3">
+                        <p>{assessment.questions} questions • {assessment.duration}</p>
+                      </div>
+                      <Button variant="secondary" size="sm" fullWidth>
+                        Take Assessment
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Card>
+          )}
+        </div>
+
+        {/* Sidebar */}
+        <div className="space-y-6">
+          {/* Learning Analytics */}
+          <Card title="Learning Analytics" variant="default" size="md">
+            <div className="space-y-4">
+              {/* Weekly Goal */}
+              <div>
+                <div className="flex justify-between text-sm mb-1">
+                  <span className="text-gray-600">Weekly Goal</span>
+                  <span className="font-medium text-gray-900">
+                    {learningAnalytics.weeklyGoal.completed}/{learningAnalytics.weeklyGoal.target} {learningAnalytics.weeklyGoal.unit}
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className="bg-primary-600 h-2 rounded-full transition-all duration-500" 
+                    style={{ width: `${(learningAnalytics.weeklyGoal.completed / learningAnalytics.weeklyGoal.target) * 100}%` }}
+                  />
+                </div>
+              </div>
+              
+              {/* Weekly Activity Chart */}
+              <div>
+                <h4 className="text-sm font-medium text-gray-900 mb-2">Weekly Activity</h4>
+                <ProgressChart
+                  data={learningAnalytics.weeklyActivity}
+                  labels={['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']}
+                  height={80}
+                  color="#3B82F6"
+                  showGrid={false}
+                />
+              </div>
+              
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-4 pt-2">
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-gray-900">{learningAnalytics.totalStats.coursesCompleted}</p>
+                  <p className="text-xs text-gray-600">Courses Completed</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-gray-900">{learningAnalytics.totalStats.hoursLearned}</p>
+                  <p className="text-xs text-gray-600">Hours Learned</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-gray-900">{learningAnalytics.totalStats.certificatesEarned}</p>
+                  <p className="text-xs text-gray-600">Certificates</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-gray-900">{learningAnalytics.totalStats.completionRate}%</p>
+                  <p className="text-xs text-gray-600">Completion Rate</p>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Skill Progress */}
+          <Card title="Skill Progress" variant="default" size="md">
+            <div className="space-y-3">
+              {learningAnalytics.skillProgress.map((skill, index) => (
+                <div key={index}>
+                  <div className="flex items-center justify-between text-sm mb-1">
+                    <span className="text-gray-700">{skill.skill}</span>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      skill.level === 'Advanced' ? 'bg-green-100 text-green-800' :
+                      skill.level === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-red-100 text-red-800'
+                    }`}>
+                      {skill.level}
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      className="h-2 rounded-full transition-all duration-500"
+                      style={{ 
+                        width: `${skill.progress}%`,
+                        backgroundColor: skill.color
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Button variant="secondary" size="sm" fullWidth className="mt-4">
+              Take New Assessment
+            </Button>
+          </Card>
+
+          {/* Learning Streak */}
+          <Card title="Learning Streak" variant="default" size="md">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary-600 mb-2">🔥</div>
+              <p className="text-2xl font-bold text-gray-900">{learningAnalytics.streakDays} Days</p>
+              <p className="text-sm text-gray-600">Keep it up!</p>
+            </div>
+            <div className="mt-4 grid grid-cols-7 gap-1">
+              {[...Array(7)].map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`h-6 rounded transition-colors duration-200 ${
+                    i < 5 ? 'bg-primary-200' : 'bg-gray-200'
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="mt-3 text-center">
+              <p className="text-xs text-gray-500">
+                Learning velocity: {learningAnalytics.learningVelocity.trend === 'up' ? '↗️' : '↘️'} 
+                {learningAnalytics.learningVelocity.thisWeek}h this week
+              </p>
+            </div>
+          </Card>
+
+          {/* Quick Actions */}
+          <Card title="Quick Actions" variant="default" size="md">
+            <div className="space-y-2">
+              <Button variant="outline" size="sm" fullWidth>
+                📚 Browse Course Catalog
+              </Button>
+              <Button variant="outline" size="sm" fullWidth>
+                🎯 Set Learning Goals
+              </Button>
+              <Button variant="outline" size="sm" fullWidth>
+                📊 View Detailed Analytics
+              </Button>
+              <Button variant="outline" size="sm" fullWidth>
+                👥 Join Study Groups
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AdaptiveLearningPathways;
