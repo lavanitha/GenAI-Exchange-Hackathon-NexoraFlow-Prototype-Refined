@@ -4,19 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "backend:install": "cd backend && npm install",
-    "backend:dev": "cd backend && npm run dev",
-    "backend:start": "cd backend && npm start",
-    "dev:full": "concurrently \"npm run dev\" \"npm run backend:dev\"",
-    "type-check": "tsc --noEmit",
-    "deploy:build": "npm run build && npm run backend:install",
-    "deploy:preview": "npm run build && npm run preview",
-    "start": "npm run backend:start",
-    "postinstall": "npm run backend:install"
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview --port 4173",
+  "type-check": "tsc --noEmit",
+  "deploy:build": "npm run build",
+  "deploy:preview": "npm run build && npm run preview",
+  "start": "npm run preview"
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
