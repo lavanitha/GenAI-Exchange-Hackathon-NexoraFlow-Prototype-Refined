@@ -48,7 +48,7 @@ Designed as part of the **Google GenAI Exchange Hackathon 2025**.
 
 ## 📥 Installation
 ```bash
-git clone https://github.com/Manikandan-official/Nexoraflow_Google_GenAI_Exchange_Hackathon_2025.git
+git clone https://github.com/lavanitha/GenAI-Exchange-Hackathon-NexoraFlow-Prototype-Refined.git
 cd nexoraflow-dashboard
 npm install
 npm run dev:full
@@ -199,19 +199,19 @@ This project is licensed under the MIT License.
   - Review GitHub issues
   - Contact the NexoraFlow team
 
-Built with Passion by the NexoraFlow Team 
+Built with Passion by the NexoraFlow Team - Mary Lavanitha Sunder & M.Manikandakan
 
 ---
 
 ## 🌐 Live Deployment
 
-🚀 **View Live App:** https://nexoraflow-app.vercel.app
+🚀 **View Live App:** https://nexoraflow-genai.vercel.app/
 
 
 ## 👤 Connect With Me
 
-[![GitHub](https://img.shields.io/badge/GitHub-000?logo=github&logoColor=white)](https://github.com/Manikandan-official)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/manikandanofficialworkspace/)
+[![GitHub](https://img.shields.io/badge/GitHub-000?logo=github&logoColor=white)](https://github.com/lavanitha)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mary-lavanitha-sunder/)
 
 
 =======
