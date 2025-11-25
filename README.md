@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 NexoraFlow – Google GenAI Exchange Hackathon 2025
 
 A comprehensive **AI-powered workflow, career, and productivity dashboard** built with **React, TypeScript, Node.js, Tailwind**, and **GenAI capabilities**.  
@@ -213,3 +214,7 @@ Built with Passion by the NexoraFlow Team
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/manikandanofficialworkspace/)
 
 
+=======
+# GenAI-Exchange-Hackathon-NexoraFlow-Prototype-Refined
+NexoraFlow – AI-Powered Career &amp; Skills Advisor NexoraFlow is a futuristic platform that empowers students and young professionals with personalized, AI-driven career guidance. It combines Skill DNA Mapping, Career Twin Simulation, Side Hustle Generator, AI Resilience Coaching, and Blockchain-verified Skill Passports to transformer.
+>>>>>>> e7c3a4e36a671f98fea7800576e57546029b1fe3
